@@ -1,0 +1,18 @@
+FROM node:14
+
+WORKDIR /app
+
+COPY package*.json ./
+
+# Instala todas as dependências incluindo as de desenvolvimento
+RUN npm install
+
+# Copia o código fonte
+COPY . .
+
+# Define variáveis de ambiente para teste
+ENV NODE_ENV=test
+ENV PORT=4001
+
+# Comando para executar os testes
+CMD ["npm", "test"]

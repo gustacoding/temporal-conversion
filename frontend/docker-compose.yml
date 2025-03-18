@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build: .
+    ports:
+      - "3000:80"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CI=true
